@@ -16,6 +16,7 @@ const ProductListing = () => {
     searchQuery,
     wishlistData,
     sortOrder,
+    deleteFromWishlist
   } = useContext(ProductContext);
   const [products, setProducts] = useState([]);
   const location = useLocation();
@@ -27,7 +28,6 @@ const ProductListing = () => {
       setSelectedCategory(category);
     }
   }, [category, setSelectedCategory]);
-
 
   useEffect(() => {
     const baseProducts = category
@@ -59,9 +59,9 @@ const ProductListing = () => {
           <section className="col-sm-9 col-12">
             <div className="d-flex align-items-center px-3 py-2">
               <p>
-                <b>Showing All Products </b>
+                <b>Showing All Products</b>
               </p>
-              <p> (Showing 20 products) </p>
+              <p> ( Showing {products.length} products) </p>
             </div>
             <div>
               <div className="row ">
@@ -84,7 +84,11 @@ const ProductListing = () => {
                             <button
                               className="btn btn-light position-absolute top-0 end-0 m-2 px-2 py-1 rounded-circle                            
                               "
-                              onClick={() => addToWishlist(item._id)}
+                              onClick={() =>
+                                isWishlisted
+                                  ? deleteFromWishlist(item._id)
+                                  : addToWishlist(item._id)
+                              }
                             >
                               <i
                                 className={`bi ${

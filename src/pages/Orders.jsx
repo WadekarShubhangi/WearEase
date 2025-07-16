@@ -2,7 +2,7 @@ import { useContext } from "react";
 import ProductContext from "../contexts/ProductContext";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 const Orders = () => {
   const navigate = useNavigate();
   const { addressData, calculateTotals, placeOrder, clearCart } =
@@ -55,6 +55,9 @@ const Orders = () => {
               </div>
             </div>
           ))}
+        </div>
+        <div>
+          <Link className="btn btn-primary" to="/address">Add New Address</Link>
         </div>
       </div>
       <Footer />

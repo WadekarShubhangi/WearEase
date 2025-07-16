@@ -1,8 +1,12 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation} from "react-router-dom";
 import ProductContext from "../contexts/ProductContext";
 
 const Header = () => {
+  const location = useLocation();
+  // const search = location.pathname === "/productlisting";
+  const showSearch = location.pathname.includes("/product")
+
   const { wishlistData, cartData, handleSearchChange } = useContext(ProductContext);
   return (
     <nav className="navbar navbar-expand-lg bg-body-secondary sticky-top">
@@ -26,7 +30,9 @@ const Header = () => {
         </button>
 
         {/* 3 */}
+       
         <div className="collapse navbar-collapse" id="navbarContent">
+           {showSearch &&
           <div className="mx-auto my-2 my-lg-0">
             <form role="search">
               <div className="input-group">
@@ -44,7 +50,7 @@ const Header = () => {
                 />
               </div>
             </form>
-          </div>
+          </div> }
           <div className="ms-auto gap-4 d-flex align-items-center">
             <Link to="/userprofile">
               <button className="btn btn-secondary px-3 py-1">

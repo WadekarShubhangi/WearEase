@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { createContext } from "react";
 const ProductContext = createContext();
 export default ProductContext;
+import { toast } from "react-toastify";
 
 export function ProductProvider({ children }) {
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -119,8 +120,14 @@ export function ProductProvider({ children }) {
       }),
     })
       .then((res) => res.json())
-      .then(() => reFetchWishlist())
-      .catch((err) => console.error("Error in wishlist API:", err));
+      .then(() => {
+        reFetchWishlist();
+        toast.success("Item added to wishlist");
+      })
+      .catch((err) => {
+        console.error("Error in wishlist API:", err);
+        toast.error("Failed to add");
+      });
   }
 
   function deleteFromWishlist(itemId) {
@@ -132,7 +139,7 @@ export function ProductProvider({ children }) {
     )
       .then((res) => res.json())
       .then(() => {
-        alert("Item removed.");
+        toast.success("Item removed from wishlist.");
         reFetchWishlist();
       })
       .catch((err) => console.error("Error in wishlist API:", err));
@@ -154,7 +161,7 @@ export function ProductProvider({ children }) {
         );
       })
       .then(() => {
-        alert("Item moved to wishlist.");
+        toast.success("Item moved to wishlist.");
         reFetchWishlist();
         reFetchCart();
       })
@@ -174,9 +181,9 @@ export function ProductProvider({ children }) {
       .then((res) => res.json())
       .then((data) => {
         if (data.alreadyExists) {
-          alert("This item is already in your cart.");
+          toast.info("This item is already in your cart.");
         } else {
-          alert("Item added to cart successfully.");
+          toast.success("Item added to cart successfully.");
         }
         reFetchCart();
       })
@@ -189,8 +196,8 @@ export function ProductProvider({ children }) {
     })
       .then((res) => res.json())
       .then(() => {
-        alert("Item removed from cart.");
         reFetchCart();
+        toast.success("Item removed from cart.");
       })
       .catch((err) => console.error("Error in cart API:", err));
   }
@@ -223,7 +230,7 @@ export function ProductProvider({ children }) {
           method: "DELETE",
         }
       );
-      alert("Item moved to cart.");
+      toast.success("Item moved from cart.");
       reFetchCart();
       reFetchWishlist();
     } catch (err) {
@@ -274,7 +281,10 @@ export function ProductProvider({ children }) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ productId, action: "increment" }),
     })
-      .then(() => reFetchCart())
+      .then(() => {
+        toast.success("Item quantity increased.");
+        reFetchCart();
+      })
       .catch((err) => console.error("Error increasing quantity:", err));
   };
 
@@ -284,7 +294,10 @@ export function ProductProvider({ children }) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ productId, action: "decrement" }),
     })
-      .then(() => reFetchCart())
+      .then(() => {
+        toast.success("Item quantity increased.");
+        reFetchCart();
+      })
       .catch((err) => console.error("Error decreasing quantity:", err));
   };
 
@@ -308,8 +321,18 @@ export function ProductProvider({ children }) {
     })
       .then((res) => res.json())
       .then(() => {
-        alert("Address added successfully!");
+        toast.success("Address added successfully!");
         reFetchAddress();
+        setFormData({
+          receiverName: "",
+          phoneNumber: "",
+          houseNumber: "",
+          apartment: "",
+          city: "",
+          postal: "",
+          state: "",
+          country: "",
+        });
       })
       .catch((err) => {
         console.error("Error adding address:", err);
@@ -341,8 +364,18 @@ export function ProductProvider({ children }) {
     )
       .then((res) => res.json())
       .then(() => {
-        alert("Address updated successfully!");
+        toast.success("Address updated successfully!");
         reFetchAddress();
+        setFormData({
+          receiverName: "",
+          phoneNumber: "",
+          houseNumber: "",
+          apartment: "",
+          city: "",
+          postal: "",
+          state: "",
+          country: "",
+        });
       })
       .catch((err) => {
         console.error("Error updating address:", err);
@@ -368,12 +401,12 @@ export function ProductProvider({ children }) {
       body: JSON.stringify(orderPayload),
     })
       .then((res) => res.json().then((data) => ({ ok: res.ok, data })))
-      .then(({ ok, data }) => {
+      .then(({ ok }) => {
         if (!ok) {
-          alert("Failed to place order:");
+          toast.error("Failed to place order.");
           return;
         }
-        alert("Order placed successfully!");
+        toast.success("Order placed successfully!");
         reFetchOrders();
         reFetchCart();
         setTimeout(() => {
@@ -382,7 +415,7 @@ export function ProductProvider({ children }) {
       })
       .catch((error) => {
         console.error("Network error placing order:", error);
-        alert("Failed to place order due to network error.");
+        toast.error("Failed to place order due to network error.");
       });
   };
 

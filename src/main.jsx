@@ -15,6 +15,8 @@ import UserProfile from "./pages/UserProfile.jsx";
 import UpdateAddress from "./pages/UpdateAddress.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ProductProvider } from "./contexts/ProductContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 const router = createBrowserRouter([
@@ -35,6 +37,7 @@ createRoot(document.getElementById("root")).render(
 <StrictMode>
   <ProductProvider>
     <RouterProvider router={router} />
+    <ToastContainer position="top-center" autoClose={2000} />
   </ProductProvider>
 </StrictMode>
 

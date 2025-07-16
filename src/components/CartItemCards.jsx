@@ -13,15 +13,15 @@ const CartItemCards = () => {
     <>
       {cartData?.data?.cart?.products?.map(({ _id, product, quantity }) => (
         <div key={_id} className="card mb-3">
-          <div className="row g-0">
-            <div className="col-4 d-flex align-items-center">
+          <div className="d-flex flex-column flex-md-row g-0">
+            <div className="col-12 col-sm-12 col-md-5 d-flex align-items-center">
               <img
                 src={product.image}
                 alt={product.title}
-                className="object-fit-cover img-fluid h-100"
+                className="img-fluid w-100 h-100 object-fit-cover"
               />
             </div>
-            <div className="col-8">
+            <div className="col-12 col-sm-12 col-md-7">
               <div className="card-body text-center p-4">
                 <h5>{product.title}</h5>
                 <p>
