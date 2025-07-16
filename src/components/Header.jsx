@@ -43,7 +43,7 @@ const Header = () => {
                 <input
                   type="text"
                   className="form-control border-start-0"
-                  placeholder="Search"
+                  placeholder="Search products"
                   aria-label="Search"
                   aria-describedby="basic-addon1"
                   onChange={handleSearchChange}

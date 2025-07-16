@@ -377,6 +377,7 @@ export function ProductProvider({ children }) {
           country: "",
         });
       })
+
       .catch((err) => {
         console.error("Error updating address:", err);
       });
