@@ -6,7 +6,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import App from "./App.jsx";
 import Wishlist from "./pages/Wishlist.jsx";
-import Cart from "./pages/cart.jsx";
+import Cart from "./pages/Cart.jsx";
 import Orders from "./pages/Orders.jsx";
 import Address from "./pages/Address.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
