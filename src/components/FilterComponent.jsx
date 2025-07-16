@@ -106,9 +106,9 @@ const handleCategoryChange = (e) => {
             <input
               className="form-check-input"
               type="checkbox"
-              value="Girl"
+              value="Girls"
               id="girlsClothing"
-              checked={selectedCategoryFromFilter.includes("Girl")}
+              checked={selectedCategoryFromFilter.includes("Girls")}
   onChange={handleCategoryChange}
             />
             <label className="form-check-label" htmlFor="girlsClothing">
