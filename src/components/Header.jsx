@@ -13,7 +13,7 @@ const Header = () => {
       <div className="container-md d-flex align-items-center">
         {/* 1 */}
         <Link className="navbar-brand fw-semibold text-secondary" to="/">
-          MyShoppingSite
+          WearEase
         </Link>
 
         {/* 2 */}

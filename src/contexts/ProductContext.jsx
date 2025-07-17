@@ -1,5 +1,5 @@
 import useFetch from "../useFetch";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { createContext } from "react";
 const ProductContext = createContext();
 export default ProductContext;
