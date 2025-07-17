@@ -347,7 +347,10 @@ export function ProductProvider({ children }) {
       }
     )
       .then((res) => res.json())
-      .then(() => reFetchAddress())
+      .then(() => {
+        reFetchAddress();
+      toast.success("Address deleted successfully.");
+      })
       .catch((err) => console.error("Error in address API:", err));
   };
 

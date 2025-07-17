@@ -53,7 +53,7 @@ const ProductListing = () => {
       <Header />
       <main className="container-fluid">
         <div className="row gx-4 gy-4">
-          <section className="col-sm-3 col-12 bg-body-secondary">
+          <section className="col-sm-3 col-12 shadow bg-body-tertiary rounded">
             <FilterComponent />
           </section>
           <section className="col-sm-9 col-12">

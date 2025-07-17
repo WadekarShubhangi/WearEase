@@ -9,7 +9,7 @@ const Header = () => {
 
   const { wishlistData, cartData, handleSearchChange } = useContext(ProductContext);
   return (
-    <nav className="navbar navbar-expand-lg bg-body-secondary sticky-top">
+    <nav className="navbar navbar-expand-lg bg-body-secondary sticky-top mb-2">
       <div className="container-md d-flex align-items-center">
         {/* 1 */}
         <Link className="navbar-brand fw-semibold text-secondary" to="/">
